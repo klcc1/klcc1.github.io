@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            top: 0;
+        }
+
+        .all {
+            width: 1050px;
+            height: 500px;
+            margin: 100px 500px;
+        }
+
+        .screen {
+            width: 1050px;
+            height: 479px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screen .list {
+            width: 5400px;
+            position: absolute;
+            left: 0;
+        }
+
+        .screen img {
+            float: left;
+            width: 1050px;
+            height: 479px;
+        }
+
+        .all span {
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            margin-top: -20px;
+            background-color: rgba(0, 0, 0, .3);
+            cursor: pointer;
+            text-align: center;
+            line-height: 40px;
+            font-family: "黑体";
+            font-weight: bold;
+            font-size: 24px;
+            color: #fff;
+            border: 1px solid #fff;
+            opacity: .5;
+            left: 5px;
+        }
+
+        .all .right {
+            right: 5px;
+            left: auto;
+        }
+
+        .arr span:hover {
+            background-color: rgba(0, 0, 0, .5);
+            opacity: .8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all">
+        <div class="screen">
+            <div class="list">
+                <img src="img/1.jpg" alt="">
+                <img src="img/2.jpg" alt="">
+                <img src="img/0.jpg" alt="">
+            </div>
+            <ol></ol>
+            <div class="arr">
+                <span class="left">
+                    <</span> <span class="right">>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var box = document.querySelector(".all");
+        var ul = document.querySelector(".list");
+        var ol = document.querySelector(".all ol");
+        var ulLiArr = ul.children;
+
+        var newLi = ulLiArr[0].cloneNode(true);
+        ul.appendChild(newLi);
+        for (var i = 0; i < ulLiArr.length - 1; i++) {
+            var newOlLi = document.createElement("li");
+            newOlLi.innerText = i + 1;
+            ol.appendChild(newOlLi);
+        }
+        ol.children[0].className = "active";
+        var olLiArr = ol.children;
+        for (var i = 0; i < olLiArr.length; i++) {
+            olLiArr[i].index = i;
+            olLiArr[i].onmouseenter = function () {
+                document.querySelector(".active").className = "";
+                olLiArr[this.index].className = "active";
+                animate(ul, -this.index * ul.children[0].offsetWidth);
+
+                square = key = this.index;
+            }
+        }
+        var timer = null;
+        var square = 0;
+        var key = 0;
+        function autoPlay() {
+            square++;
+            key++;
+            if (key > ulLiArr.length - 1) {
+                ul.style.left = 0 + "px";
+                key = 1;
+            }
+            animate(ul, -key * ul.children[0].offsetWidth);
+            square = square > ulLiArr.length - 2 ? 0 : square
+            document.querySelector(".active").className = "";
+            olLiArr[square].className = "active";
+        }
+        timer = setInterval(autoPlay, 5000);
+
+        box.onmouseenter = function () {
+            clearInterval(timer);
+        }
+        box.onmouseleave = function () {
+            timer = setInterval(autoPlay, 5000);
+        }
+
+        var btnArr = box.children[0].children[2].children;
+        btnArr[1].onclick = function () {
+            autoPlay();
+        }
+        btnArr[0].onclick = function () {
+            key--;
+            square--;
+            if (key < 0) {
+                ul.style.left = -(ulLiArr.length - 1) * ul.children[0].offsetWidth + "px";
+                key = ulLiArr.length - 2;
+            }
+            animate(ul, -key * ul.children[0].offsetWidth);
+            square = square < 0 ? ulLiArr.length - 2 : square
+            document.querySelector(".active").className = "";
+            olLiArr[square].className = "active";
+        }
+
+        function animate(element, position) {
+            clearInterval(element.timer);
+            element.timer = setInterval(function () {
+                var current = element.offsetLeft;
+                var step = (position - current) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+
+                if (Math.abs(current - position) > step) {
+                    element.style.left = current + step + "px";
+                } else {
+                    element.style.left = position + "px";
+                    clearInterval(element.timer)
+                }
+            }, 20)
+        }
+    </script>
+</body>
+
+</html>
