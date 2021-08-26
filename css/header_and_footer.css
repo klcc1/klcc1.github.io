@@ -1,0 +1,198 @@
+/* 初始化 */
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  font-family: "微软雅黑";
+  font-size: 14px;
+  box-sizing: border-box;
+}
+a{
+  font-size: 14px;
+  font-family: "微软雅黑";
+  color: rgba(1,1,1,.6);
+  text-align: center;
+}
+.content{
+  width: 100%;
+  /* position: fixed; */
+  background: cornflowerblue;
+  /* background: url(../img/模板/微信图片_20210720164937.jpg) no-repeat; */
+  background-size: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 滚动条和滑块 */
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb{ 
+  width: 0px;
+  height: 10px;
+  border-radius: 2px;
+}
+/* 滑块背景色 */
+::-webkit-scrollbar-thumb{
+  background: royalblue;
+  /* background: url(../img/模板/logo_001.png) no-repeat; */
+  /* background-size: 50px 50px; */
+}
+/* 其余相关样式设置跟滑块一个背景色 */
+::-webkit-scrollbar,
+::-webkit-scrollbar-corner,
+::-webkit-resizer,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece{
+  background: rgba(1,1,1,0);
+  /* background:aquamarine; */
+}
+/* 隐藏滚动条按钮 */
+::-webkit-scrollbar-button{
+  display: none;
+}
+
+/* 设置浮动 */
+.float_right{
+  float: right;
+}
+.float_left{
+  float: left;
+}
+.clearfix::after{
+  clear: both;
+  display: block;
+  content: "";
+}
+/* 绝对居中 */
+.absolute_center{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+/* 导航 */
+.nav{
+  width: 100%;
+  height: 60px;
+  box-shadow: rgba(1,1,1,.4) 0 0 4px 0;
+  position: fixed;
+  z-index: 999;
+}
+.nav_option{
+  min-width: 660px;
+  position: relative;
+}
+/* 导航栏 */
+.nav_option ul{
+  width: 300px;
+  height: 60px;
+}
+/* 导航中心 logo */
+.logo{
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+}
+.logo img{
+  width: 50px;
+  height: 50px;
+}
+/* 导航 导航栏 */
+.nav_option li{
+  height: 60px;
+  line-height: 60px;
+  /* background: red; */
+  display: inline-block;
+  text-align: center;
+  padding: 0 10px;
+}
+.nav_option li:hover{
+  background: rgba(1,1,1,.6);
+  transition: all .7s;
+}
+/* 导航 左侧导航栏 */
+.left_opt li{
+  float: left;
+}
+/* 导航 右侧导航栏 */
+.right_opt li{
+  float: right;
+}
+/* 总体页面设置 */
+.main_content{
+  width: 100%;
+  position: relative;
+}
+/* 下一页按钮 */
+.next{
+  width: 100px;
+  height: 30px;
+  background: #4169E1;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 20px;
+  border: none;
+  color: white;
+  z-index: 999;
+  border-radius: 4px;
+  opacity: .5;
+}
+.next:hover{
+  opacity: 1;
+  transition: all .5s;
+  box-shadow: 0 0 10px rgba(1,1,1,.4);
+  text-shadow: rgba(1,1,1,.4) 4px 4px 2px;
+}
+/* 每一页的页面总体 */
+.pic{
+  width: 100%;
+  margin: auto;
+}
+.pic div{
+  width: 100%;
+  height: 100vh;
+  z-index: 2!important;
+  background: #4169E1;
+  padding-top: 60px;
+}
+/* 给每一页单独设置背景 */
+.pic div:nth-child(1){
+  background: url(../img/back_02.jpg) no-repeat center;
+  background-size: cover;
+}
+.pic div:nth-child(2){
+  background: url(../img/back_03.jpg) no-repeat center;
+  background-size: cover;
+}
+.pic div:nth-child(3){
+  background: url(../img/back_04.jpg) no-repeat center;
+  background-size: cover;
+}
+.pic div:nth-child(4){
+  background: url(../img/back_06.jpg) no-repeat center;
+  background-size: cover;
+}
+.pic div:nth-child(5){
+  background: url(../img/back_01.jpg) no-repeat center;
+  background-size: cover;
+}
+/* 页面内容宽度 */
+.content_main{
+  width: 1200px;
+  margin: auto;
+  height: calc(100vh - 120px);
+  background: rgba(255,255,255,.2);
+  border-right: 1px solid rgba(1,1,1,.4);
+  border-left: 1px solid rgba(1,1,1,.4);
+}
+/* 底部 */
+.copy{
+  width: 100%;
+  height: 60px;
+  box-shadow: rgba(1,1,1,.4) 0 0 4px 0;
+  position: fixed;
+  z-index: 99;
+  bottom: 0px;
+}
